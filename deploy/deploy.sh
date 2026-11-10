@@ -16,8 +16,11 @@ fi
 echo "==> Tarik kode terbaru"
 git pull --ff-only origin main
 
-echo "==> Install dependency (termasuk devDependencies untuk build)"
-npm ci
+echo "==> Install dependency (memastikan tailwindcss & build tools terpasang)"
+npm ci --include=dev
+
+echo "==> Bersihkan cache build lama (.next)"
+rm -rf .next
 
 echo "==> Typecheck"
 npm run typecheck
