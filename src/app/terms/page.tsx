@@ -1,16 +1,26 @@
-import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
+import JsonLd from '@/components/seo/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: 'Syarat Layanan',
   description:
     'Syarat layanan Quriva: akun lembaga, langganan, pembayaran, kepemilikan data, dan penggunaan layanan.',
-  alternates: { canonical: '/terms' },
-};
+  path: '/terms',
+});
 
 export default function TermsPage() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: 'Beranda', path: '/' },
+            { name: 'Syarat Layanan', path: '/terms' },
+          ]),
+        ]}
+      />
       <a
         href="/"
         className="inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-brand hover:text-brand-strong"

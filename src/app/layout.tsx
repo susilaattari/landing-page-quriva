@@ -1,70 +1,12 @@
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 import '@fontsource-variable/manrope';
 import './globals.css';
 
 import SiteHeader from '@/components/marketing/SiteHeader';
 import SiteFooter from '@/components/marketing/SiteFooter';
-import { SITE_URL } from '@/lib/config';
+import { buildMetadata } from '@/lib/seo';
 
-const title = "Quriva — Monitoring Hafalan Al-Qur'an";
-const description =
-  'Pantau setoran, penilaian per ayat, dan progres hafalan santri. Quriva untuk sekolah, rumah tahfidz, dan halaqah privat.';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: title,
-    template: '%s — Quriva',
-  },
-  description,
-  applicationName: 'Quriva',
-  category: 'education',
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'id_ID',
-    url: SITE_URL,
-    siteName: 'Quriva',
-    title,
-    description,
-    images: [
-      {
-        url: '/og/quriva-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Quriva — monitoring hafalan Al-Qur’an',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-    images: ['/og/quriva-og.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
-    },
-  },
-  icons: {
-    icon: [{ url: '/favicon.png', sizes: '64x64', type: 'image/png' }],
-    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
-  },
-  formatDetection: {
-    telephone: false,
-    email: false,
-    address: false,
-  },
-};
+export const metadata = buildMetadata();
 
 export const viewport: Viewport = {
   width: 'device-width',

@@ -24,6 +24,7 @@ export type Feature = {
 };
 
 export const NAV_LINKS = [
+  { href: '#contoh-aplikasi', label: 'Contoh Aplikasi' },
   { href: '#fitur', label: 'Fitur' },
   { href: '#cara-kerja', label: 'Cara Kerja' },
   { href: '#harga', label: 'Harga' },
@@ -35,11 +36,11 @@ export const HERO = {
   titleTop: 'Setiap ayat terpantau.',
   titleBottom: 'Setiap hafalan terdampingi.',
   description:
-    'Quriva menghubungkan guru, admin, dan wali dalam satu alur monitoring hafalan \u2014 dari setoran harian dan penilaian per ayat sampai laporan yang bisa dibaca orang tua.',
+    'Quriva menghubungkan guru, koordinator, dan wali dalam satu alur monitoring hafalan \u2014 dari setoran harian dan penilaian per ayat sampai laporan yang bisa dibaca orang tua.',
   primaryCta: 'Mulai Kelola Hafalan',
   secondaryCta: 'Lihat Demo',
   proof: [
-    'Web untuk admin dan guru',
+    'Web untuk koordinator dan guru',
     'Aplikasi Android untuk guru dan wali',
     'Data terpisah per lembaga',
   ],
@@ -51,12 +52,12 @@ export const SEGMENTS: Segment[] = [
     index: '01',
     label: 'Sekolah & Pesantren',
     short: 'Banyak halaqah, banyak guru, banyak wali.',
-    title: 'Satu dashboard untuk admin, guru, dan wali.',
+    title: 'Satu dashboard untuk Koordinator,guru, dan wali.',
     description:
       'Kelola banyak halaqah, pantau setoran tiap guru, dan beri wali laporan yang bisa dibaca \u2014 tanpa menyusun ulang rekap dari buku catatan.',
     bullets: [
       'Rekap setoran per santri, kelas, dan halaqah',
-      'Akses terpisah untuk admin, guru, dan wali',
+      'Akses terpisah untuk koordinator, guru, dan wali',
       'E-sertifikat tasmi dan LMS pada paket yang menyertakannya',
     ],
     note: 'Cocok untuk pesantren, sekolah Islam, dan yayasan dengan banyak halaqah.',
@@ -187,7 +188,7 @@ export const HOW_IT_WORKS = [
   {
     step: '03',
     title: 'Mulai memantau',
-    description: 'Guru mencatat setoran, admin melihat rekap, wali mengikuti progres.',
+    description: 'Guru mencatat setoran, koordinator melihat rekap, wali mengikuti progres.',
   },
 ] as const;
 
@@ -198,7 +199,7 @@ export const TRUST_POINTS = [
   },
   {
     title: 'Akses dibatasi per peran',
-    description: 'Admin, guru, dan wali melihat bagian yang sesuai dengan tugasnya.',
+    description: 'koordinator, guru, dan wali melihat bagian yang sesuai dengan tugasnya.',
   },
   {
     title: 'Wali hanya melihat anaknya',
@@ -206,7 +207,7 @@ export const TRUST_POINTS = [
   },
   {
     title: 'Kuota lewat persetujuan',
-    description: 'Permintaan tambahan kuota diproses dan disetujui oleh admin pusat.',
+    description: 'Permintaan tambahan kuota diproses dan disetujui oleh admin quriva.',
   },
 ] as const;
 
@@ -231,7 +232,7 @@ export const FAQS = [
   {
     question: 'Apa itu Quriva?',
     answer:
-      'Quriva adalah platform untuk mencatat setoran hafalan, menilai bacaan per ayat, dan menyampaikan progres kepada wali. Admin dan guru dapat memakai web; guru dan wali juga memakai aplikasi Android.',
+      'Quriva adalah platform untuk mencatat setoran hafalan, menilai bacaan per ayat, dan menyampaikan progres kepada wali. koordinator dan guru dapat memakai web; guru dan wali juga memakai aplikasi Android.',
   },
   {
     question: 'Apakah hanya untuk pesantren?',
@@ -256,7 +257,7 @@ export const FAQS = [
   {
     question: 'Bagaimana cara menambah kuota santri?',
     answer:
-      'Setelah akun aktif, admin lembaga dapat mengajukan tambahan kuota dari dashboard. Pengajuan diproses dan disetujui oleh admin pusat.',
+      'Setelah akun aktif, admin lembaga dapat mengajukan tambahan kuota dari dashboard. Pengajuan diproses dan disetujui oleh admin quriva.',
   },
   {
     question: 'Bisakah melihat demo sebelum mendaftar?',
@@ -294,6 +295,7 @@ export const FOOTER = {
     {
       title: 'Produk',
       links: [
+        { label: 'Contoh Aplikasi', href: '#contoh-aplikasi' },
         { label: 'Fitur', href: '#fitur' },
         { label: 'Cara Kerja', href: '#cara-kerja' },
         { label: 'Harga', href: '#harga' },

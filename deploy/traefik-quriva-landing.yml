@@ -1,0 +1,40 @@
+# Salin ke VPS sebagai: /docker/traefik/dynamic/quriva-landing.yml
+# Traefik (file provider, watch=true) akan memuatnya otomatis tanpa restart.
+#
+# PENTING: priority dibuat tinggi (200) agar rute landing menang atas rute lama
+# yang saat ini melayani apex quriva.tech (mis. dashboard). Rute api (8099) dan
+# app (3000) yang sudah ada tidak diubah.
+http:
+  middlewares:
+    quriva-www-to-apex:
+      redirectRegex:
+        regex: "^https://www\\.quriva\\.tech/(.*)"
+        replacement: "https://quriva.tech/${1}"
+        permanent: true
+
+  routers:
+    quriva-landing:
+      rule: "Host(`quriva.tech`)"
+      priority: 200
+      entryPoints:
+        - "websecure"
+      service: "quriva-landing-service"
+      tls:
+        certResolver: "letsencrypt"
+
+    quriva-landing-www:
+      rule: "Host(`www.quriva.tech`)"
+      priority: 200
+      entryPoints:
+        - "websecure"
+      middlewares:
+        - "quriva-www-to-apex"
+      service: "quriva-landing-service"
+      tls:
+        certResolver: "letsencrypt"
+
+  services:
+    quriva-landing-service:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:3001"
