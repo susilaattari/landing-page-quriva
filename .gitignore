@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+.npm-cache/
+
+# next.js
+.next/
+out/
+build/
+
+# env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+.vercel
+
+# local visual QA
+shots/
+
+
+# local browser profile
+.edge-profile/
+*.log
+
