@@ -3,7 +3,7 @@
 # Pakai:  bash deploy/deploy.sh
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-/root/home/quriva-landing}"
+APP_DIR="${APP_DIR:-/root/home/landing-page-quriva}"
 cd "$APP_DIR"
 
 echo "==> Node: $(node -v)  npm: $(npm -v)"
