@@ -6,6 +6,8 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, Check, Laptop, Smartphone, X, 
 import SectionHeading from '@/components/ui/SectionHeading';
 import TrackedLink from '@/components/ui/TrackedLink';
 import { buttonClass } from '@/components/ui/button-styles';
+import LaptopFrame from '@/components/ui/LaptopFrame';
+import PhoneFrame from '@/components/ui/PhoneFrame';
 import { APP_SCREENS, type AppScreen, type AppScreenCategory } from '@/content/app-screens';
 import { DEMO_MESSAGE, registerLink, whatsappLink } from '@/lib/config';
 import { track } from '@/lib/analytics';
@@ -21,36 +23,27 @@ const FILTER_LABELS: Record<Filter, string> = {
 function Screenshot({ screen, priority = false, large = false }: { screen: AppScreen; priority?: boolean; large?: boolean }) {
   if (screen.device === 'desktop') {
     return (
-      <div className="overflow-hidden rounded-xl border border-line bg-white shadow-card">
-        <Image
+      <div className="w-full pt-1">
+        <LaptopFrame
           src={screen.src}
           alt={screen.alt}
-          width={1440}
-          height={1000}
           priority={priority}
           sizes={large ? '(max-width: 1024px) 100vw, 900px' : '(max-width: 1024px) 100vw, 640px'}
-          className="h-auto w-full"
+          badge={screen.badge}
         />
       </div>
     );
   }
 
   return (
-    <div className={`mx-auto ${large ? 'w-[260px] sm:w-[300px]' : 'w-[220px] sm:w-[250px]'}`}>
-      <div className="rounded-[34px] border-[6px] border-ink bg-ink p-1 shadow-preview">
-        <div className="overflow-hidden rounded-[28px] bg-paper">
-          <Image
-            src={screen.src}
-            alt={screen.alt}
-            width={780}
-            height={1688}
-            priority={priority}
-            sizes={large ? '300px' : '250px'}
-            className="h-auto w-full"
-          />
-        </div>
-      </div>
-    </div>
+    <PhoneFrame
+      src={screen.src}
+      alt={screen.alt}
+      priority={priority}
+      sizes={large ? '300px' : '250px'}
+      widthClass={large ? 'w-[250px] sm:w-[285px]' : 'w-[210px] sm:w-[240px]'}
+      badge={screen.badge}
+    />
   );
 }
 

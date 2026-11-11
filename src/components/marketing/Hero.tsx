@@ -16,7 +16,7 @@ export default function Hero() {
       />
       <div className="relative mx-auto max-w-content px-5 pb-14 pt-10 sm:px-8 lg:pb-24 lg:pt-20">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6 xl:col-span-6">
             <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.16em] text-gold-ink">
               <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
               <span>{HERO.eyebrow}</span>
@@ -67,7 +67,7 @@ export default function Hero() {
             </ul>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6 xl:col-span-6">
             <ProductPreview />
           </div>
         </div>

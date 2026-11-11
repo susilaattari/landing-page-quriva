@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { ArrowRight, Award, Check, FileText, Mic, ShieldCheck } from 'lucide-react';
+import LaptopFrame from '@/components/ui/LaptopFrame';
+import PhoneFrame from '@/components/ui/PhoneFrame';
 
 function Caption({ children }: { children: ReactNode }) {
   return <p className="mt-3 text-right text-[11px] font-medium text-muted">{children}</p>;
@@ -8,17 +10,13 @@ function Caption({ children }: { children: ReactNode }) {
 
 function DesktopShot({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   return (
-    <div>
-      <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-        <Image
-          src={src}
-          alt={alt}
-          width={1440}
-          height={1000}
-          sizes="(max-width: 1024px) 100vw, 660px"
-          className="h-auto w-full"
-        />
-      </div>
+    <div className="w-full pt-1">
+      <LaptopFrame
+        src={src}
+        alt={alt}
+        sizes="(max-width: 1024px) 100vw, 660px"
+        badge="Web Admin & Guru"
+      />
       <Caption>{caption}</Caption>
     </div>
   );
@@ -27,18 +25,12 @@ function DesktopShot({ src, alt, caption }: { src: string; alt: string; caption:
 function PhoneShot({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   return (
     <div className="mx-auto w-[218px] sm:w-[232px]">
-      <div className="rounded-[34px] border-[6px] border-ink bg-ink p-1 shadow-preview">
-        <div className="overflow-hidden rounded-[28px] bg-paper">
-          <Image
-            src={src}
-            alt={alt}
-            width={780}
-            height={1688}
-            sizes="232px"
-            className="h-auto w-full"
-          />
-        </div>
-      </div>
+      <PhoneFrame
+        src={src}
+        alt={alt}
+        sizes="232px"
+        widthClass="w-[218px] sm:w-[232px]"
+      />
       <Caption>{caption}</Caption>
     </div>
   );
