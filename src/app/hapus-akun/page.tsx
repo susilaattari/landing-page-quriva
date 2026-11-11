@@ -8,7 +8,7 @@ import AccountDeletionForm from '@/components/legal/AccountDeletionForm';
 export const metadata = buildMetadata({
   title: 'Penghapusan Akun & Data Pengguna',
   description:
-    'Panduan resmi dan formulir permohonan penghapusan akun serta data pribadi pengguna aplikasi Quriva (Web & Android) sesuai kebijakan Google Play Store.',
+    'Panduan resmi dan formulir permohonan penghapusan akun serta data pribadi pengguna aplikasi Quriva.',
   path: '/hapus-akun',
 });
 
@@ -36,7 +36,7 @@ export default function AccountDeletionPage() {
       <div className="mt-6 border-b border-line pb-8">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-700">
           <ShieldAlert size={16} />
-          <span>Kebijakan Privasi &amp; Kepatuhan Google Play</span>
+          <span>Kebijakan Privasi &amp; Kepatuhan</span>
         </div>
         <h1 className="mt-3 text-3xl font-extrabold tracking-[-0.02em] text-ink sm:text-4xl">
           Penghapusan Akun &amp; Data Pengguna
@@ -204,3 +204,4 @@ export default function AccountDeletionPage() {
     </article>
   );
 }
+
