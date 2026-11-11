@@ -98,6 +98,11 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href="/hapus-akun" className="text-sm text-white/70 hover:text-white">
+                  Hapus Akun &amp; Data
+                </a>
+              </li>
+              <li>
                 <a href={appLink('/')} className="text-sm text-white/70 hover:text-white">
                   Portal lembaga
                 </a>

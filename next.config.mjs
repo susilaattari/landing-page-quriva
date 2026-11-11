@@ -13,6 +13,12 @@ const legacyRedirects = APP_URL
     ]
   : [];
 
+const standardRedirects = [
+  { source: '/delete-account', destination: '/hapus-akun', statusCode: 301 },
+  { source: '/data-deletion', destination: '/hapus-akun', statusCode: 301 },
+  { source: '/account-deletion', destination: '/hapus-akun', statusCode: 301 },
+];
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -20,7 +26,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   async redirects() {
-    return legacyRedirects;
+    return [...standardRedirects, ...legacyRedirects];
   },
 };
 
