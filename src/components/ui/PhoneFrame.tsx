@@ -1,4 +1,8 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { shimmerBlurDataUrl } from '@/lib/image-shimmer';
 
 interface PhoneFrameProps {
   src: string;
@@ -13,6 +17,7 @@ interface PhoneFrameProps {
 /**
  * Komponen mockup smartphone modern (Android / iOS style) dengan bezel tipis,
  * pill speaker / notch kamera, dan shadow realistis.
+ * Dilengkapi skeleton shimmer loading agar tidak tampak kosong saat gambar di-load.
  */
 export default function PhoneFrame({
   src,
@@ -23,6 +28,12 @@ export default function PhoneFrame({
   badge,
   widthClass = 'w-[200px] sm:w-[230px]',
 }: PhoneFrameProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [src]);
+
   return (
     <div className={`relative mx-auto ${widthClass} select-none ${className}`}>
       {/* Bodi luar ponsel */}
@@ -33,8 +44,28 @@ export default function PhoneFrame({
           <span className="h-0.5 w-3 rounded-full bg-[#2d333b]" />
         </div>
 
-        {/* Layar ponsel */}
-        <div className="relative overflow-hidden rounded-[27px] sm:rounded-[32px] bg-paper">
+        {/* Layar ponsel (dengan rasio tetap 780/1688) */}
+        <div className="relative aspect-[780/1688] w-full overflow-hidden rounded-[27px] sm:rounded-[32px] bg-[#FAF8F2]">
+          {/* Skeleton Shimmer Loading Placeholder */}
+          <div
+            className={`absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-b from-sand via-line/40 to-sand transition-opacity duration-300 ${
+              isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
+            aria-hidden={isLoaded}
+          >
+            {/* Shimmer pulse effect */}
+            <div className="absolute inset-0 animate-pulse bg-gradient-to-b from-transparent via-white/40 to-transparent" />
+
+            {/* Spinner loader */}
+            <div className="relative z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-white/90 shadow-card backdrop-blur-sm">
+              <span className="h-4 w-4 sm:h-5 sm:w-5 animate-spin rounded-full border-2 border-brand/20 border-t-brand" />
+            </div>
+            <span className="relative z-10 text-[9px] sm:text-[10px] font-semibold text-muted">
+              Memuat...
+            </span>
+          </div>
+
+          {/* Gambar Tangkapan Layar Asli */}
           <Image
             src={src}
             alt={alt}
@@ -42,7 +73,12 @@ export default function PhoneFrame({
             height={1688}
             priority={priority}
             sizes={sizes}
-            className="h-auto w-full object-cover"
+            placeholder="blur"
+            blurDataURL={shimmerBlurDataUrl(780, 1688)}
+            onLoad={() => setIsLoaded(true)}
+            className={`h-auto w-full object-cover transition-all duration-500 ease-out ${
+              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'
+            }`}
           />
         </div>
       </div>
@@ -57,4 +93,3 @@ export default function PhoneFrame({
     </div>
   );
 }
-

@@ -11,6 +11,7 @@ import PhoneFrame from '@/components/ui/PhoneFrame';
 import { APP_SCREENS, type AppScreen, type AppScreenCategory } from '@/content/app-screens';
 import { DEMO_MESSAGE, registerLink, whatsappLink } from '@/lib/config';
 import { track } from '@/lib/analytics';
+import { shimmerBlurDataUrl } from '@/lib/image-shimmer';
 
 type Filter = 'all' | AppScreenCategory;
 
@@ -152,7 +153,7 @@ export default function AppShowcaseGallery() {
                 className="group relative block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                 aria-label={`Perbesar: ${active.title}`}
               >
-                <Screenshot screen={active} priority />
+                <Screenshot key={active.id} screen={active} priority />
                 <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1 rounded-lg bg-ink/80 px-2 py-1 text-[11px] font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                   <ZoomIn size={12} /> Perbesar
                 </span>
@@ -246,7 +247,9 @@ export default function AppShowcaseGallery() {
                       alt=""
                       fill
                       sizes="120px"
-                      className="object-cover object-top"
+                      placeholder="blur"
+                      blurDataURL={shimmerBlurDataUrl(120, 90)}
+                      className="object-cover object-top transition-opacity duration-300"
                     />
                   </span>
                   <span className="mt-1 block truncate px-1 text-[10px] font-bold text-muted">{screen.badge}</span>
@@ -283,7 +286,7 @@ export default function AppShowcaseGallery() {
                 <X size={18} />
               </button>
             </div>
-            <Screenshot screen={active} large />
+            <Screenshot key={`zoom-${active.id}`} screen={active} large />
           </div>
         </div>
       )}
